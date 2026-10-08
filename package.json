@@ -1,0 +1,28 @@
+{
+  "name": "character-reference-studio",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Cross-platform project and character reference library.",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "desktop": "electron-builder",
+    "android": "npx cap sync android",
+    "android:open": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.0",
+    "@capacitor/core": "^7.4.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.0",
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.characterreferencestudio.app",
+    "productName": "Character Reference Studio",
+    "files": ["index.html", "src/**/*", "electron/**/*", "capacitor.config.json"],
+    "win": { "target": ["nsis", "portable"] }
+  }
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Character Reference Studio</title>
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div>
+      <h1>Character Reference Studio</h1>
+      <p>Projects, libraries, references, and image-generation providers — kept separate.</p>
+    </div>
+    <div class="actions">
+      <button id="newProject">＋ Project</button>
+      <button id="importBtn">Import</button>
+      <button id="exportBtn">Export</button>
+    </div>
+  </header>
+
+  <nav id="projects"></nav>
+
+  <main>
+    <section class="toolbar">
+      <div>
+        <label>Current project</label>
+        <h2 id="projectTitle">No project</h2>
+      </div>
+      <div class="actions">
+        <button id="newCharacter">＋ Character</button>
+        <button id="newAsset">＋ Reference</button>
+        <button id="providerBtn">⚙ Providers</button>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+      <div class="card">
+        <h3>Characters</h3>
+        <strong id="characterCount">0</strong>
+        <p>Reusable character profiles and reference sets.</p>
+      </div>
+      <div class="card">
+        <h3>References</h3>
+        <strong id="referenceCount">0</strong>
+        <p>Images for characters, locations, props, outfits, styles, and more.</p>
+      </div>
+      <div class="card">
+        <h3>Generation</h3>
+        <strong id="providerCount">0</strong>
+        <p>Provider connections are global and can be changed independently.</p>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel">
+        <h3>Characters</h3>
+        <div id="characters" class="grid"></div>
+      </div>
+      <div class="panel">
+        <h3>Reference Library</h3>
+        <div id="references" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="panel generator">
+      <div class="generatorHead">
+        <div>
+          <h3>Generation Workspace</h3>
+          <p>Select characters and references, then describe the scene. The app does not lock you to one provider.</p>
+        </div>
+        <button id="generateBtn" class="primary">Generate</button>
+      </div>
+      <div class="formgrid">
+        <label>Selected characters<input id="selectedChars" placeholder="e.g. Kareem, Elena"></label>
+        <label>Selected references<input id="selectedRefs" placeholder="e.g. forest, outfit 02"></label>
+        <label>Scene / prompt<textarea id="prompt" placeholder="Describe the image you want..."></textarea></label>
+        <label>Style<textarea id="style" placeholder="e.g. cinematic dark fantasy illustration"></textarea></label>
+      </div>
+      <div id="generationStatus" class="status">No generation provider is connected yet.</div>
+    </section>
+  </main>
+</div>
+
+<dialog id="projectDialog">
+<form method="dialog" class="dialog">
+<h3>New Project</h3>
+<input id="projectName" placeholder="Project name" required>
+<textarea id="projectDescription" placeholder="Optional project description"></textarea>
+<div class="dialogActions"><button value="cancel">Cancel</button><button id="saveProject" value="default" class="primary">Create</button></div>
+</form>
+</dialog>
+
+<dialog id="characterDialog">
+<form method="dialog" class="dialog">
+<h3>New Character</h3>
+<input id="characterName" placeholder="Character name" required>
+<textarea id="characterDescription" placeholder="Appearance, personality, lore, notes..."></textarea>
+<div class="dialogActions"><button value="cancel">Cancel</button><button id="saveCharacter" value="default" class="primary">Create</button></div>
+</form>
+</dialog>
+
+<dialog id="assetDialog">
+<form method="dialog" class="dialog">
+<h3>Add Reference</h3>
+<input id="assetName" placeholder="Reference name" required>
+<select id="assetType"><option>Character</option><option>Outfit</option><option>Location</option><option>Prop</option><option>Creature</option><option>Style</option><option>Pose</option><option>Other</option></select>
+<input id="assetImage" type="file" accept="image/*">
+<textarea id="assetNotes" placeholder="Notes"></textarea>
+<div class="dialogActions"><button value="cancel">Cancel</button><button id="saveAsset" value="default" class="primary">Add</button></div>
+</form>
+</dialog>
+
+<dialog id="providerDialog">
+<form method="dialog" class="dialog wide">
+<h3>Image Generation Providers</h3>
+<p>Provider settings are separate from projects. Add your own endpoint and credentials when you choose a service.</p>
+<label>Provider name<input id="providerName" placeholder="My image provider"></label>
+<label>API endpoint<input id="providerEndpoint" placeholder="https://example.com/generate"></label>
+<label>API key<input id="providerKey" type="password" placeholder="Stored locally in this prototype"></label>
+<div id="providers"></div>
+<div class="dialogActions"><button value="cancel">Close</button><button id="saveProvider" value="default" class="primary">Add Provider</button></div>
+</form>
+</dialog>
+
+<input id="importFile" type="file" accept=".json" hidden>
+<script src="src/app.js"></script>
+</body>
+</html>

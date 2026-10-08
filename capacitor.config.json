@@ -1,0 +1,6 @@
+{
+  "appId": "com.characterreferencestudio.app",
+  "appName": "Character Reference Studio",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}
